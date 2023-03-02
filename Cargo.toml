@@ -1,0 +1,11 @@
+[package]
+name = "rust_callback_test"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+quiche = "0.16.0"
+calloop = "0.10.5"
+dtp_utils = { path = "./dtp_utils" }
