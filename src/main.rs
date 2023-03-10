@@ -442,7 +442,7 @@ fn init_server(addr: SocketAddr, cfg_path: &str) -> Result<()> {
     let server_addr = addr;
     let server_socket = UdpSocket::bind(server_addr)?;
     let local_addr = server_socket.local_addr().unwrap();
-    server_socket.set_nonblocking(true);
+    server_socket.set_nonblocking(true)?;
     global_data.local_addr = Some(local_addr);
     global_data.socket = Some(server_socket.try_clone().unwrap());
     // init config file
@@ -995,7 +995,7 @@ fn handle_writable(client: &mut Client, stream_id: u64) {
 /// Handles incoming HTTP/0.9 requests.
 fn handle_stream(client: &mut Client, stream_id: u64, buf: &[u8], _root: &str) {
     // pass
-    info!("server recv client: {}, stream_id: {}, buf: {}", client.conn.trace_id(), stream_id, String::from_utf8_lossy(&buf));
+    println!("server recv client: {}, stream_id: {}, buf: {}", client.conn.trace_id(), stream_id, String::from_utf8_lossy(&buf));
 }
 
 fn hex_dump(buf: &[u8]) -> String {
